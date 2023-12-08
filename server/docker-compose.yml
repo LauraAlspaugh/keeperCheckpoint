@@ -1,0 +1,8 @@
+version: '3'
+services:
+  app:
+    image: your-dockerhub-username/keeperCheckpoint:latest
+    env_file:
+      - keeperCheckpoint-env
+    ports:
+      - "7045:80"
