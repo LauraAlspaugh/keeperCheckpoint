@@ -8,4 +8,5 @@ public class VaultKeep
     public int KeepId { get; set; }
     public Account Creator { get; set; }
     public string AccountId { get; set; }
+    public int VaultKeepId { get; set; }
 }

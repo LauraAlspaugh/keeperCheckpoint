@@ -30,7 +30,7 @@ public class VaultKeepsService
     internal string DestroyVaultKeep(int vaultKeepId, string userId)
     {
         VaultKeep vaultKeep = GetVaultKeepById(vaultKeepId);
-        if (vaultKeep.AccountId != userId)
+        if (vaultKeep.CreatorId != userId)
         {
             throw new Exception("do not try it!");
         }

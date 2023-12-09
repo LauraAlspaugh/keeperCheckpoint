@@ -113,17 +113,19 @@ public class KeepsRepository
     {
         string sql = @"
         SELECT
-        kep.*,
+        valkep.*,
         acc.*
-        FROM keeps kep
-        JOIN accounts acc ON kep.creatorId = acc.id
-        WHERE kep.id = @vaultId;
+        FROM vaultkeeps valkep
+        JOIN accounts acc ON valkep.creatorId = acc.id
+        WHERE valkep.vaultId = @vaultId;
         ";
 
         List<VaultKeepKeep> keeps = _db.Query<Account, VaultKeepKeep, VaultKeepKeep>(sql, (account, keep) =>
         {
-            // keep.KeepId = account.VaultId;
+
+            keep.VaultKeepId = account.VaultId;
             keep.VaultId = account.VaultId;
+            keep.KeepId = account.VaultKeepId;
             keep.Creator = account;
 
             return keep;

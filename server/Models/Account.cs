@@ -7,4 +7,5 @@ public class Account
   public string Email { get; set; }
   public string Picture { get; set; }
   public int VaultId { get; set; }
+  public int VaultKeepId { get; set; }
 }
