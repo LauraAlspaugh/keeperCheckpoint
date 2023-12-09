@@ -9,7 +9,7 @@ public class ProfilesService
         _profilesRepository = profilesRepository;
     }
 
-    internal Profile GetProfileById(int profileId)
+    internal Profile GetProfileById(string profileId)
     {
         Profile profile = _profilesRepository.GetProfileById(profileId);
         if (profile == null)

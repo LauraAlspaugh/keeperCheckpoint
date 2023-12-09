@@ -4,6 +4,7 @@
 
 
 
+
 namespace keeperCheckpoint.Repositories;
 public class KeepsRepository
 {
@@ -109,6 +110,26 @@ public class KeepsRepository
         return keeps;
     }
 
+
+
+    internal List<Keep> GetKeepsByProfileId(string profileId)
+    {
+        string sql = @"
+        SELECT 
+        kep.*,
+        acc.*
+        FROM keeps kep
+        JOIN accounts acc ON kep.creatorId = acc.id
+        WHERE kep.id = @profileId;
+        ";
+        List<Keep> keeps = _db.Query<Keep, Account, Keep>(sql, (keep, account) =>
+        {
+            keep.Creator = account;
+            return keep;
+        }, new { profileId }).ToList();
+        return keeps;
+    }
+
     internal List<VaultKeepKeep> GetKeepsByVaultId(int vaultId)
     {
         string sql = @"
@@ -123,8 +144,8 @@ public class KeepsRepository
         List<VaultKeepKeep> keeps = _db.Query<Account, VaultKeepKeep, VaultKeepKeep>(sql, (account, keep) =>
         {
 
-            keep.VaultKeepId = account.VaultId;
-            keep.VaultId = account.VaultId;
+            // keep.VaultKeepId = account.VaultId;
+            // keep.VaultId = account.VaultId;
             keep.KeepId = account.VaultKeepId;
             keep.Creator = account;
 

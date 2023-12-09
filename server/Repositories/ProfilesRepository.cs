@@ -9,22 +9,10 @@ public class ProfilesRepository
         _db = db;
     }
 
-    internal Profile GetProfileById(int profileId)
+    internal Profile GetProfileById(string profileId)
     {
-        string sql = @"
-        SELECT 
-       pro.*,
-       acc.*
-       FROM profiles pro
-       JOIN accounts acc ON pro.creatorId = acc.id
-       WHERE pro.id = @profileId;
-       ";
-        Profile profile = _db.Query<Profile, Account, Profile>(sql, (profile, account) =>
-        {
-            profile.Creator = account;
-            return profile;
-        }, new { profileId }).FirstOrDefault();
-        return profile;
+        string sql = "SELECT * FROM profiles WHERE id = @id";
+        return _db.Query<Profile>(sql, new { profileId }).FirstOrDefault();
 
     }
 }
