@@ -5,7 +5,9 @@ CREATE TABLE
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
         name varchar(255) COMMENT 'User Name',
         email varchar(255) COMMENT 'User Email',
-        picture varchar(255) COMMENT 'User Picture'
+        picture varchar(255) COMMENT 'User Picture',
+        coverImg VARCHAR(700) COMMENT 'user cover image',
+        bio VARCHAR(255) COMMENT 'user bio'
     ) default charset utf8 COMMENT '';
 
 CREATE TABLE
@@ -65,11 +67,17 @@ SELECT * FROM vaultkeeps
 
 SELECT * FROM profiles
 
+SELECT * FROM accounts
+
 DROP TABLE keeps
 
 DROP TABLE vaults
 
 DROP TABLE vaultkeeps
+
+DROP TABLE accounts
+
+DROP TABLE profiles
 
 INSERT INTO
     keeps(

@@ -1,5 +1,5 @@
 namespace keeperCheckpoint.Models;
-public class VaultKeepKeep : Profile
+public class VaultKeepKeep : Keep
 {
     public int VaultId { get; set; }
     public int KeepId { get; set; }

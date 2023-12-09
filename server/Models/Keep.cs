@@ -11,6 +11,6 @@ public class Keep
     public int Kept { get; set; }
     public string CreatorId { get; set; }
     public Account Creator { get; set; }
-    public int VaultId { get; set; }
+    // public int VaultId { get; set; }
 
 }
