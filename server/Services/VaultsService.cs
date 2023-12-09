@@ -1,5 +1,6 @@
 
 
+
 namespace keeperCheckpoint.Services;
 public class VaultsService
 {
@@ -38,6 +39,12 @@ public class VaultsService
         vault.IsPrivate = vaultData.IsPrivate ?? vault.IsPrivate;
         _vaultsRepository.EditVault(vault);
         return vault;
+    }
+
+    internal List<Vault> GetMyVaults(string userId)
+    {
+        List<Vault> vaults = _vaultsRepository.GetMyVaults(userId);
+        return vaults;
     }
 
     internal Vault GetVaultById(int vaultId)

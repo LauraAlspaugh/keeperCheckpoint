@@ -59,9 +59,9 @@ public class KeepsService
         return keeps;
     }
 
-    internal List<Keep> GetKeepsByVaultId(int vaultId)
+    internal List<VaultKeepKeep> GetKeepsByVaultId(int vaultId)
     {
-        List<Keep> keeps = _keepsRepository.GetKeepsByVaultId(vaultId);
+        List<VaultKeepKeep> keeps = _keepsRepository.GetKeepsByVaultId(vaultId);
         return keeps;
     }
 }

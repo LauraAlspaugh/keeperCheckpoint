@@ -9,6 +9,15 @@ CREATE TABLE
     ) default charset utf8 COMMENT '';
 
 CREATE TABLE
+    IF NOT EXISTS profiles(
+        id VARCHAR(255) NOT NULL PRIMARY KEY,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+        name VARCHAR(255),
+        picture VARCHAR(255)
+    ) default charset utf8 COMMENT '';
+
+CREATE TABLE
     IF NOT EXISTS keeps(
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
@@ -53,6 +62,8 @@ SELECT * FROM keeps
 SELECT * FROM vaults
 
 SELECT * FROM vaultkeeps
+
+SELECT * FROM profiles
 
 DROP TABLE keeps
 
