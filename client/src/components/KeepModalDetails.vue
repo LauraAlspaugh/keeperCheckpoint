@@ -6,8 +6,10 @@
                     <img class="img-fluid image-card" :src="keep.img" :alt="keep.name">
                 </div>
                 <div class="col-6 p-2 ">
-                    <div class=" keep-name mt-5">
+                    <div class=" keep-name mt-5 text-center">
                         <p class="fs-2 text-center mb-3 ">{{ keep.name }}</p>
+                        <!-- <i class="mdi mdi-delete text-center fs-3" title="delete this keep" role="button"
+                            @click="destroyKeep()"> </i> -->
                     </div>
                     <p> {{ keep.description }}</p>
                     <router-link :to="{ name: 'Profile', params: { profileId: keep.creator.id } }">
@@ -28,11 +30,25 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
+import { keepsService } from '../services/KeepsService.js';
 export default {
     setup() {
         return {
             keep: computed(() => AppState.activeKeep),
-            keeps: computed(() => AppState.keeps)
+            keeps: computed(() => AppState.keeps),
+            async destroyKeep() {
+                try {
+                    const wantstoDestroy = await Pop.confirm('Are you sure you want to destroy this Keep? ');
+                    if (!wantstoDestroy) {
+                        return;
+                    }
+                    await keepsService(props.photoProp.id);
+                }
+                catch (error) {
+                    logger.error(error);
+                    Pop.error(error);
+                }
+            }
         }
     }
 };

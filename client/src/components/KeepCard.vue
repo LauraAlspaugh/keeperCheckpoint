@@ -1,10 +1,11 @@
 <template>
-    <div @click="setActiveKeep(keepProp)" data-bs-toggle="modal" data-bs-target="#keepModal" type="button"
-        class="keep-card">
+    <div class="keep-card">
         <img class="img-fluid keep-image" title="image of keep" :src="keepProp.img" :alt="keepProp.name">
-        <p class="bottom-left text-light fs-3" :title="keepProp.name">{{ keepProp.name }}</p>
+        <p @click="setActiveKeep(keepProp)" data-bs-toggle="modal" data-bs-target="#keepModal" type="button"
+            class="bottom-left text-light fs-3" :title="keepProp.name">{{ keepProp.name }}</p>
         <img class="img-fluid rounded-circle bottom-right" :title="keepProp.creator.name" :src="keepProp.creator.picture"
             :alt="keepProp.creator.name">
+        <i class="mdi mdi-close top-right fs-3" title="delete this keep" role="button" @click="destroyKeep()"></i>
     </div>
     <KeepModal />
 </template>
@@ -16,6 +17,8 @@ import { computed, reactive, onMounted } from 'vue';
 import { Keep } from '../models/Keep.js';
 import KeepModal from './KeepModal.vue';
 import { keepsService } from '../services/KeepsService.js';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
 export default {
     props: { keepProp: { type: Keep, required: true } },
     setup(props) {
@@ -26,6 +29,19 @@ export default {
                 // const photoId = photoProp.id
 
             },
+            async destroyKeep() {
+                try {
+                    const wantstoDestroy = await Pop.confirm('Are you sure you want to destroy this Keep? ');
+                    if (!wantstoDestroy) {
+                        return;
+                    }
+                    await keepsService.destroyKeep(props.keepProp.id);
+                }
+                catch (error) {
+                    logger.error(error);
+                    Pop.error(error);
+                }
+            }
         };
     },
     components: { KeepModal }
@@ -57,5 +73,11 @@ export default {
     right: 16px;
     height: 40px;
     width: 40px;
+}
+
+.top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
 }
 </style>
