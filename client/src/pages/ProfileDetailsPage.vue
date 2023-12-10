@@ -11,6 +11,14 @@
         </section>
         <section class="row">
             <div>
+                <p class="fs-1 keep-title">Vaults</p>
+            </div>
+            <div v-for="vault in vaults" :key="vault.id" class="col-3 p-3">
+                <VaultCard :vaultProp="vault" />
+            </div>
+        </section>
+        <section class="row">
+            <div>
                 <p class="fs-1 keep-title">Keeps</p>
             </div>
             <div v-for="keep in keeps" :key="keep.id" class="col-3">
@@ -25,16 +33,19 @@
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { profileService } from '../services/ProfileService.js';
+import { vaultsService } from '../services/VaultsService.js';
 import { useRoute } from 'vue-router';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import KeepCard from '../components/KeepCard.vue';
+import VaultCard from '../components/VaultCard.vue';
 export default {
     setup() {
         const route = useRoute();
         onMounted(() => {
             getProfile();
             getKeepsByProfileId();
+            getVaultsByProfileId()
         });
         async function getProfile() {
             try {
@@ -56,13 +67,24 @@ export default {
                 Pop.error(error);
             }
         }
+        async function getVaultsByProfileId() {
+            try {
+                const profileId = route.params.profileId
+                await vaultsService.getVaults(profileId)
+            } catch (error) {
+                logger.error(error)
+                Pop.error(error)
+
+            }
+        }
         return {
             keeps: computed(() => AppState.keeps),
             account: computed(() => AppState.account),
-            profile: computed(() => AppState.profile)
+            profile: computed(() => AppState.profile),
+            vaults: computed(() => AppState.vaults)
         };
     },
-    components: { KeepCard }
+    components: { KeepCard, VaultCard }
 };
 </script>
 
