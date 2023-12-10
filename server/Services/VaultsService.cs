@@ -19,7 +19,7 @@ public class VaultsService
 
     internal string DestroyVault(int vaultId, string userId)
     {
-        Vault vault = GetVaultById(vaultId);
+        Vault vault = GetVaultById(vaultId, userId);
         if (vault.CreatorId != userId)
         {
             throw new Exception("do not even try it!");
@@ -30,7 +30,7 @@ public class VaultsService
 
     internal Vault EditVault(int vaultId, string userId, Vault vaultData)
     {
-        Vault vault = GetVaultById(vaultId);
+        Vault vault = GetVaultById(vaultId, userId);
         if (vault.CreatorId != userId)
         {
             throw new Exception("not your vault to edit!");
@@ -47,13 +47,17 @@ public class VaultsService
         return vaults;
     }
 
-    internal Vault GetVaultById(int vaultId)
+    internal Vault GetVaultById(int vaultId, string userId)
     {
         Vault vault = _vaultsRepository.GetVaultById(vaultId);
         if (vault == null)
         {
             throw new Exception("not a valid vault id");
 
+        }
+        if (vault.IsPrivate == true && vault.CreatorId != userId)
+        {
+            throw new Exception("There has been an issue...");
         }
         return vault;
     }

@@ -10,13 +10,13 @@
                         <p class="fs-2 text-center mb-3 ">{{ keep.name }}</p>
                     </div>
                     <p> {{ keep.description }}</p>
-                    <!-- <router-link :to="{ name: 'Profile', params: { accountId: account.id } }"> -->
-                    <div class="text-end mt-5">
+                    <router-link :to="{ name: 'Profile', params: { profileId: keep.creator.id } }">
+                        <div class="text-end mt-5">
 
-                        <img class="rounded-circle img-fluid creator-image text-end" :src="keep.creator.picture"
-                            :alt="keep.creator.name">
-                    </div>
-                    <!-- </router-link> -->
+                            <img class="rounded-circle img-fluid creator-image text-end" :src="keep.creator.picture"
+                                :alt="keep.creator.name">
+                        </div>
+                    </router-link>
                 </div>
             </div>
 
