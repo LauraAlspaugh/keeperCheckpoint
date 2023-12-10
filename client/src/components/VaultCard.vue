@@ -1,11 +1,12 @@
 <template>
-    <div @click="setActiveKeep(keepProp)" data-bs-toggle="modal" data-bs-target="#keepModal" type="button"
-        class="keep-card">
-        <img class="img-fluid keep-image" title="image of vault" :src="vaultProp.img" :alt="vaultProp.name">
-        <p class="bottom-left text-light fs-3" :title="vaultProp.name">{{ vaultProp.name }}</p>
-        <!-- <img class="img-fluid rounded-circle bottom-right" :title="vaultProp.creator.name" :src="vaultProp.creator.picture"
+    <router-link :to="{ name: 'Vault', params: { vaultId: vaultProp.id } }">
+        <div class="keep-card">
+            <img class="img-fluid keep-image" title="image of vault" :src="vaultProp.img" :alt="vaultProp.name">
+            <p class="bottom-left text-light fs-3" :title="vaultProp.name">{{ vaultProp.name }}</p>
+            <!-- <img class="img-fluid rounded-circle bottom-right" :title="vaultProp.creator.name" :src="vaultProp.creator.picture"
             :alt="vaultProp.creator.name"> -->
-    </div>
+        </div>
+    </router-link>
 </template>
 
 
@@ -38,6 +39,8 @@ export default {
     position: absolute;
     bottom: 4px;
     left: 16px;
+    backdrop-filter: blur(15px);
+    border-radius: 5px;
 }
 
 .bottom-right {
