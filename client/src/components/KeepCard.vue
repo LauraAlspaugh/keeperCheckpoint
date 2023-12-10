@@ -65,7 +65,7 @@ export default {
     position: absolute;
     bottom: 4px;
     left: 16px;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(25px);
     border-radius: 5px;
 }
 
