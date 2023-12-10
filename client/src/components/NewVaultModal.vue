@@ -32,12 +32,12 @@
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
                             <textarea v-model="editable.description" type="text" class="form-control" id="description"
-                                rows="5" maxlength="255" required></textarea>
+                                rows="5" maxlength="255"></textarea>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label class="me-2" for="isPrivate">Private</label>
                             <input v-model="editable.isPrivate" type="checkbox" class="form-check-input" id="isPrivate">
-                        </div>
+                        </div> -->
 
                         <button type="submit" class="btn btn-outline-dark">Submit</button>
                     </form>

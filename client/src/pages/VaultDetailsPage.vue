@@ -5,6 +5,7 @@
                 <img class="img-fluid vault-image" :src="vault.img" alt="">
                 <p class="centered ">{{ vault.name }}</p>
                 <p class="below">By {{ vault.creator.name }}</p>
+                <p>{{ keeps.length }} keeps</p>
             </div>
         </section>
         <section v-if="vault" class="row">

@@ -7,6 +7,10 @@
             <div class="col-12 text-center">
                 <img class="img-fluid rounded-circle profile-img" :src="profile.picture" alt="">
                 <p class=" fs-1 mt-5 text-center ">{{ profile.name }}</p>
+                <p class="fs-5">
+                    Vaults: {{ vaults.length }} || Keeps: {{ keeps.length }}
+                </p>
+
             </div>
         </section>
         <section class="row">
