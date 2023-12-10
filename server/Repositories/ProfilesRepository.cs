@@ -11,7 +11,7 @@ public class ProfilesRepository
 
     internal Profile GetProfileById(string profileId)
     {
-        string sql = "SELECT * FROM profiles WHERE id = @id";
+        string sql = "SELECT * FROM accounts WHERE id = @profileId";
         return _db.Query<Profile>(sql, new { profileId }).FirstOrDefault();
 
     }

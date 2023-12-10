@@ -82,7 +82,7 @@ WHERE val.id = @Id;
        acc.*
        FROM vaults val
        JOIN accounts acc ON acc.id = val.creatorId
-       WHERE val.accountId = @userid;
+       WHERE val.creatorId = @userid;
        ";
 
         List<Vault> vaults = _db.Query<Vault, Account, Vault>(sql, (vault, account) =>
@@ -109,5 +109,23 @@ WHERE val.id = @Id;
             return vault;
         }, new { vaultId }).FirstOrDefault();
         return vault;
+    }
+
+    internal List<Vault> GetVaultsByProfileId(string profileId)
+    {
+        string sql = @"
+        SELECT 
+        val.*,
+        acc.*
+        FROM vaults val
+        JOIN accounts acc ON val.creatorId = acc.id
+        WHERE val.creatorId = @profileId;
+        ";
+        List<Vault> vaults = _db.Query<Vault, Account, Vault>(sql, (vault, account) =>
+        {
+            vault.Creator = account;
+            return vault;
+        }, new { profileId }).ToList();
+        return vaults;
     }
 }

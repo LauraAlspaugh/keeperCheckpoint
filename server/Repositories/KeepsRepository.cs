@@ -120,7 +120,7 @@ public class KeepsRepository
         acc.*
         FROM keeps kep
         JOIN accounts acc ON kep.creatorId = acc.id
-        WHERE kep.id = @profileId;
+        WHERE kep.creatorId = @profileId;
         ";
         List<Keep> keeps = _db.Query<Keep, Account, Keep>(sql, (keep, account) =>
         {
@@ -134,22 +134,25 @@ public class KeepsRepository
     {
         string sql = @"
         SELECT
+        kep.*,
         valkep.*,
+        val.*,
         acc.*
-        FROM vaultkeeps valkep
-        JOIN accounts acc ON valkep.creatorId = acc.id
+        FROM keeps kep
+        JOIN vaultkeeps valkep ON valkep.keepId = kep.id
+        JOIN vaults val ON val.id = valkep.vaultId
+        JOIN accounts acc ON acc.id = valkep.creatorId
         WHERE valkep.vaultId = @vaultId;
         ";
 
-        List<VaultKeepKeep> keeps = _db.Query<Account, VaultKeepKeep, VaultKeepKeep>(sql, (account, keep) =>
+        List<VaultKeepKeep> keeps = _db.Query<VaultKeepKeep, VaultKeep, Vault, Account, VaultKeepKeep>(sql, (vaultkeepkeep, vaultkeep, vault, account) =>
         {
+            vaultkeepkeep.VaultKeepId = vaultkeep.Id;
+            vault.Creator = account;
+            vaultkeepkeep.Creator = account;
+            return vaultkeepkeep;
 
-            // keep.VaultKeepId = account.VaultId;
-            // keep.VaultId = account.VaultId;
-            keep.KeepId = account.VaultKeepId;
-            keep.Creator = account;
 
-            return keep;
         }, new { vaultId }).ToList();
         return keeps;
     }
