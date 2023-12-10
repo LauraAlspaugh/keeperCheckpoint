@@ -5,7 +5,7 @@
                 <img class="img-fluid vault-image" :src="vault.img" alt="">
                 <p class="centered ">{{ vault.name }}</p>
                 <p class="below">By {{ vault.creator.name }}</p>
-                <p>{{ keeps.length }} keeps</p>
+                <p class="fs-3  text-center">{{ keeps.length }} keeps</p>
             </div>
         </section>
         <section v-if="vault" class="row">
@@ -20,7 +20,7 @@
 
 
 <script>
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { vaultsService } from '../services/VaultsService.js';
@@ -30,6 +30,7 @@ import KeepCard from '../components/KeepCard.vue';
 export default {
     setup() {
         const route = useRoute()
+        const router = useRouter()
         onMounted(() => {
             getVaultById()
             getKeepsByVaultId()
@@ -42,6 +43,9 @@ export default {
             catch (error) {
                 logger.error(error);
                 Pop.error(error);
+                if (error.response.data.includes('There has been an issue...')) {
+                    router.push({ name: 'Home' })
+                }
             }
         }
         async function getKeepsByVaultId() {
@@ -67,7 +71,7 @@ export default {
 <style lang="scss" scoped>
 .vault-image {
     width: 100%;
-    height: 300px;
+    height: 400px;
     object-fit: cover;
     position: center;
     border-radius: 7px;
@@ -90,7 +94,7 @@ export default {
 
 .below {
     position: absolute;
-    top: 80%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;

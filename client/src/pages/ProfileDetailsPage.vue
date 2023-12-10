@@ -8,7 +8,7 @@
                 <img class="img-fluid rounded-circle profile-img" :src="profile.picture" alt="">
                 <p class=" fs-1 mt-5 text-center ">{{ profile.name }}</p>
                 <p class="fs-5">
-                    Vaults: {{ vaults.length }} || Keeps: {{ keeps.length }}
+                    {{ vaults.length }} Vaults || {{ keeps.length }} Keeps
                 </p>
 
             </div>

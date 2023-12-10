@@ -6,8 +6,8 @@ CREATE TABLE
         name varchar(255) COMMENT 'User Name',
         email varchar(255) COMMENT 'User Email',
         picture varchar(255) COMMENT 'User Picture',
-        coverImg VARCHAR(700) COMMENT 'user cover image',
-        bio VARCHAR(255) COMMENT 'user bio'
+        coverImg VARCHAR(1000) NOT NULL,
+        bio varchar(255) COMMENT 'user bio'
     ) default charset utf8 COMMENT '';
 
 CREATE TABLE
@@ -95,4 +95,20 @@ VALUES (
         0,
         0,
         "652ef49aff9881f8395eb350"
+    )
+
+INSERT INTO
+    accounts(
+        name,
+        email,
+        picture,
+        bio,
+        coverImg
+    )
+VALUES (
+        "Laura",
+        "lauraalspaugh2002@icloud.com",
+        "https://images.unsplash.com/photo-1617659258448-f2711883be96?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGJsYWNrJTIwYW5kJTIwd2hpdGUlMjBhZXN0aGV0aWN8ZW58MHx8MHx8fDA%3D",
+        "Hey there. Trust the process. No one finds success overnight....trust it ",
+        "https://s.gravatar.com/avatar/b43abc76c68151fbc8b3d734acfcfc64?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fho.png"
     )
