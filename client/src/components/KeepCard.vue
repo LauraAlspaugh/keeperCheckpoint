@@ -5,7 +5,8 @@
             class="bottom-left text-light fs-3" :title="keepProp.name">{{ keepProp.name }}</p>
         <img class="img-fluid rounded-circle bottom-right" :title="keepProp.creator.name" :src="keepProp.creator.picture"
             :alt="keepProp.creator.name">
-        <i class="mdi mdi-close top-right fs-3" title="delete this keep" role="button" @click="destroyKeep()"></i>
+        <i v-if="keepProp.creator.id == account.id" class="mdi mdi-close top-right fs-3" title="delete this keep"
+            role="button" @click="destroyKeep()"></i>
     </div>
     <KeepModal />
 </template>
@@ -24,6 +25,7 @@ export default {
     setup(props) {
         return {
             keeps: computed(() => AppState.keeps),
+            account: computed(() => AppState.account),
             setActiveKeep(keepProp) {
                 keepsService.setActiveKeep(keepProp)
                 // const photoId = photoProp.id

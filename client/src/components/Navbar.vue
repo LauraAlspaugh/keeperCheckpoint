@@ -6,7 +6,8 @@
             Co.</span></i>
       </div>
     </router-link>
-    <button class="btn btn-outline-dark" data-bs-target="#newKeepModal" data-bs-toggle="modal">Create</button>
+    <button class="btn btn-outline-dark" data-bs-target="#newKeepModal" data-bs-toggle="modal"
+      title="create a keep">Create</button>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
