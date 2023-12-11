@@ -11,6 +11,7 @@ class VaultsService {
         AppState.vaults = res.data.map((vault) => new Vault(vault))
     }
     async createVault(vaultData) {
+
         const res = await api.post('api/vaults', vaultData)
         logger.log('creating a vault', res.data)
         const newVault = new Vault(res.data)
@@ -28,6 +29,11 @@ class VaultsService {
         const res = await api.get(`api/vaults/${vaultId}/keeps`)
         logger.log('getting keeps by vault id', res.data)
         AppState.keeps = res.data.map((keep) => new Keep(keep))
+    }
+    async destroyVault(vaultId) {
+        const res = await api.delete(`api/vaults/${vaultId}`)
+        logger.log('destroying vault', res.data)
+        AppState.vaults = AppState.vaults.filter((vault) => vault.id != vaultId)
     }
 
 }

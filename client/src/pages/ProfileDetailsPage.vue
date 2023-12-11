@@ -116,6 +116,6 @@ export default {
 }
 
 .masonry {
-    columns: 300px;
+    columns: 400px;
 }
 </style>

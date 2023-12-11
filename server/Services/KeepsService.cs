@@ -19,7 +19,7 @@ public class KeepsService
 
     internal string DestroyKeep(int keepId, string userId)
     {
-        Keep keep = GetKeepById(keepId);
+        Keep keep = GetKeepById(keepId, userId);
         if (keep.CreatorId != userId)
         {
             throw new Exception("Don't even try it!");
@@ -30,7 +30,7 @@ public class KeepsService
 
     internal Keep EditKeep(int keepId, string userId, Keep keepData)
     {
-        Keep keep = GetKeepById(keepId);
+        Keep keep = GetKeepById(keepId, userId);
         if (keep.CreatorId != userId)
         {
             throw new Exception("Not your keep to edit!");
@@ -43,13 +43,21 @@ public class KeepsService
 
     }
 
-    internal Keep GetKeepById(int keepId)
+    internal Keep GetKeepById(int keepId, string userId)
     {
         Keep keep = _keepsRepository.GetKeepById(keepId);
         if (keep == null)
         {
             throw new Exception("Not a valid id");
         }
+        return keep;
+    }
+
+    internal Keep GetKeepByIdAndIncreaseViews(int keepId, string userId)
+    {
+        Keep keep = GetKeepById(keepId, userId);
+        keep.Views++;
+        _keepsRepository.EditKeep(keep);
         return keep;
     }
 
@@ -68,6 +76,7 @@ public class KeepsService
     internal List<VaultKeepKeep> GetKeepsByVaultId(int vaultId)
     {
         List<VaultKeepKeep> keeps = _keepsRepository.GetKeepsByVaultId(vaultId);
+
 
         return keeps;
     }

@@ -14,6 +14,9 @@
                             @click="destroyKeep()"> </i> -->
                     </div>
                     <p> {{ keep.description }}</p>
+                    <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" v-for="vault in vaults"
+                        :key="vault.id">{{ vault.name }}</button>
+
                     <router-link :to="{ name: 'Profile', params: { profileId: keep.creator.id } }">
                         <div class="text-end mt-5">
 
@@ -38,6 +41,7 @@ export default {
         return {
             keep: computed(() => AppState.activeKeep),
             keeps: computed(() => AppState.keeps),
+            vaults: computed(() => AppState.vaults),
             async destroyKeep() {
                 try {
                     const wantstoDestroy = await Pop.confirm('Are you sure you want to destroy this Keep? ');
