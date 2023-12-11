@@ -27,6 +27,7 @@ export default {
             keeps: computed(() => AppState.keeps),
             account: computed(() => AppState.account),
             setActiveKeep(keepProp) {
+                keepProp.views++
                 keepsService.setActiveKeep(keepProp)
                 // const photoId = photoProp.id
 

@@ -7,6 +7,8 @@
                 </div>
                 <div class="col-6 p-2 ">
                     <div class=" keep-name mt-5 text-center">
+                        <p>{{ keep.views }} <i class="mdi mdi-eye fs-5"></i></p>
+                        <p>{{ keep.kept }}<i class="mdi mdi-alpha-k-circle-outline fs-5"></i> </p>
                         <p class="fs-2 text-center mb-3 ">{{ keep.name }}</p>
                         <!-- <i class="mdi mdi-delete text-center fs-3" title="delete this keep" role="button"
                             @click="destroyKeep()"> </i> -->
@@ -15,8 +17,8 @@
                     <router-link :to="{ name: 'Profile', params: { profileId: keep.creator.id } }">
                         <div class="text-end mt-5">
 
-                            <img class="rounded-circle img-fluid creator-image text-end" :src="keep.creator.picture"
-                                :alt="keep.creator.name">
+                            <img class="rounded-circle img-fluid creator-image text-end" :title="keep.creator.name"
+                                :src="keep.creator.picture" :alt="keep.creator.name">
                         </div>
                     </router-link>
                 </div>
