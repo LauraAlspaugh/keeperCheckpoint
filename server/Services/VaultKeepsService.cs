@@ -15,7 +15,11 @@ public class VaultKeepsService
     internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData, string userId)
     {
 
-        _vaultsService.GetVaultById(vaultKeepData.VaultId, userId);
+        Vault vault = _vaultsService.GetVaultById(vaultKeepData.VaultId, userId);
+        if (vault.CreatorId != userId)
+        {
+            throw new Exception("not your vault to use!");
+        }
 
 
 

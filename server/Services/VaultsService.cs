@@ -55,6 +55,7 @@ public class VaultsService
             throw new Exception("not a valid vault id");
 
         }
+
         if (vault.IsPrivate == true)
         {
             throw new Exception("There has been an issue...");
