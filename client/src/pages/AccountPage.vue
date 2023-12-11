@@ -1,10 +1,13 @@
 <template>
   <div class="about text-center">
     <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
+    <div class="col-12 ">
+      <img class="img-fluid cover-image" :src="account.coverImg" alt="">
+
+    </div>
+    <img class="rounded-circle profile-img img-fluid" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
     <p>{{ account.bio }}</p>
-    <img :src="account.coverImg" alt="">
   </div>
   <section class="row">
     <form @submit.prevent="editAccount()" class="p-5">
@@ -60,7 +63,23 @@ export default {
 </script>
 
 <style scoped>
-img {
+/* img {
   max-width: 100px;
+} */
+
+.cover-image {
+  width: 60%;
+  height: 200px;
+  object-fit: cover;
+  position: center;
+  border-radius: 7px;
+  padding: 5px;
+
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border: 2px solid gray;
 }
 </style>

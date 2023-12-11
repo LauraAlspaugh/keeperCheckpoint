@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <section v-if="profile" class="row">
             <div v-if="profile" class="col-12 p-4">
-                <img class="img-fluid profile-image" :src="profile.picture" alt="">
+                <img class="img-fluid profile-image" :src="account.coverImg" alt="">
             </div>
             <div class="col-12 text-center">
                 <img class="img-fluid rounded-circle profile-img" :src="profile.picture" alt="">

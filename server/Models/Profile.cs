@@ -7,4 +7,5 @@ public class Profile
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public Account Creator { get; set; }
+    public string CoverImg { get; set; }
 }
