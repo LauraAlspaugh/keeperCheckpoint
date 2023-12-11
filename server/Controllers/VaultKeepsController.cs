@@ -14,13 +14,13 @@ public class VaultKeepsController : ControllerBase
 
     [Authorize]
     [HttpPost]
-    public async Task<ActionResult<VaultKeep>> CreateVaultKeep([FromBody] VaultKeep vaultKeepData)
+    public async Task<ActionResult<VaultKeep>> CreateVaultKeep([FromBody] VaultKeep vaultKeepData, string userId)
     {
         try
         {
             Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
             vaultKeepData.CreatorId = userInfo.Id;
-            VaultKeep vaultKeep = _vaultKeepsService.CreateVaultKeep(vaultKeepData);
+            VaultKeep vaultKeep = _vaultKeepsService.CreateVaultKeep(vaultKeepData, userInfo.Id);
             return Ok(vaultKeep);
         }
         catch (Exception error)

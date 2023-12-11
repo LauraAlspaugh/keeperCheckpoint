@@ -5,10 +5,12 @@ namespace keeperCheckpoint.Services;
 public class KeepsService
 {
     private readonly KeepsRepository _keepsRepository;
+    private readonly VaultsService _vaultsService;
 
-    public KeepsService(KeepsRepository keepsRepository)
+    public KeepsService(KeepsRepository keepsRepository, VaultsService vaultsService)
     {
         _keepsRepository = keepsRepository;
+        _vaultsService = vaultsService;
     }
 
     internal Keep CreateKeep(Keep keepData)
@@ -73,9 +75,12 @@ public class KeepsService
         return keeps;
     }
 
-    internal List<VaultKeepKeep> GetKeepsByVaultId(int vaultId)
+    internal List<VaultKeepKeep> GetKeepsByVaultId(int vaultId, string userId)
+
     {
+        _vaultsService.GetVaultById(vaultId, userId);
         List<VaultKeepKeep> keeps = _keepsRepository.GetKeepsByVaultId(vaultId);
+
 
 
         return keeps;
