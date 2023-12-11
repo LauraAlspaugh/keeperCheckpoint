@@ -25,8 +25,11 @@
             <div>
                 <p class="fs-1 keep-title">Keeps</p>
             </div>
-            <div v-for="keep in keeps" :key="keep.id" class="col-3">
-                <KeepCard :keepProp="keep" />
+            <div class="masonry">
+
+                <div v-for="keep in keeps" :key="keep.id" class="col-12 p-3 w-100 mb-2 div-height ">
+                    <KeepCard :keepProp="keep" />
+                </div>
             </div>
         </section>
     </div>
@@ -110,5 +113,9 @@ export default {
 
 .keep-title {
     font-family: 'Pinyon Script', cursive;
+}
+
+.masonry {
+    columns: 300px;
 }
 </style>
