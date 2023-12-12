@@ -5,11 +5,15 @@ public class VaultKeepsService
 {
     private readonly VaultKeepsRepository _vaultKeepsRepository;
     private readonly VaultsService _vaultsService;
+    private readonly KeepsService _keepsService;
+    private readonly KeepsRepository _keepsRepository;
 
-    public VaultKeepsService(VaultKeepsRepository vaultKeepsRepository, VaultsService vaultsService)
+    public VaultKeepsService(VaultKeepsRepository vaultKeepsRepository, VaultsService vaultsService, KeepsService keepsService, KeepsRepository keepsRepository)
     {
         _vaultKeepsRepository = vaultKeepsRepository;
         _vaultsService = vaultsService;
+        _keepsService = keepsService;
+        _keepsRepository = keepsRepository;
     }
 
     internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData, string userId)
@@ -31,7 +35,9 @@ public class VaultKeepsService
         // {
         //     throw new Exception("not your vault");
         // }
-
+        Keep keep = _keepsService.GetKeepById(vaultKeepData.KeepId, userId);
+        keep.Kept++;
+        _keepsRepository.EditKeep(keep);
         return vaultKeep;
     }
 

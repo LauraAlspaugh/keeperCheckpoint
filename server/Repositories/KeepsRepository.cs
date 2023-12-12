@@ -57,7 +57,8 @@ public class KeepsRepository
         SET 
         name = @Name,
         description = @Description,
-        views = @Views
+        views = @Views,
+        kept = @Kept
         WHERE id = @Id;
 
         SELECT 

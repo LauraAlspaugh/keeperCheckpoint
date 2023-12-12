@@ -17,13 +17,14 @@
                     <!-- <button @click="createVaultKeep()" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                         v-for="vault in vaults" :key="vault.id">{{ vault.name }}</button> -->
                     <!-- <label for="vault" class="form-label">Vault</label> -->
-                    <select v-model="editable.vault" class="form-select" name="" id="">
+                    <select v-model="editable.vaultId" class="form-select" name="vault" id="vault">
 
-                        <option :value="vault" v-for="vault in vaults" :key="vault" {{ vault.name }}>
+                        <option :value="vault.id" v-for="vault in vaults" :key="vault">{{ vault.name }}</option>
 
-                        </option>
+
                     </select>
-                    <button @click="createVaultKeep(vault.id, keep.id)" class="btn btn-outline-dark mt-2">Save</button>
+                    <button @click="createVaultKeep()" class="btn btn-outline-dark mt-2">Save</button>
+                    <button @click="destroyVaultKeep()" class="btn btn-outline-dark mt-2 m-2">Remove</button>
 
 
 
@@ -33,7 +34,7 @@
                         <div class="text-end mt-5">
 
                             <img class="rounded-circle img-fluid creator-image text-end" :title="keep.creator.name"
-                                :src="keep.creator.picture" :alt="keep.creator.name">
+                                :src="keep.creator.picture" :alt="keep.creator.name" data-bs-dismiss="modal">
                         </div>
                     </router-link>
                 </div>
@@ -75,7 +76,7 @@ export default {
         }, { immediate: true });
         return {
             editable,
-            profile: computed(() => AppState.activeProfile),
+            profile: computed(() => AppState.profile),
             keep: computed(() => AppState.activeKeep),
             keeps: computed(() => AppState.keeps),
             vaults: computed(() => AppState.vaults),
@@ -93,12 +94,30 @@ export default {
                     Pop.error(error);
                 }
             },
-            async createVaultKeep(vaultId, keepId) {
+            async createVaultKeep() {
                 try {
+                    logger.log(editable.value)
+                    editable.value.keepId = AppState.activeKeep.id
+                    logger.log('about to head to the service', editable.value)
+                    const vaultKeepData = editable.value
+                    AppState.activeKeep.kept++
+                    await keepsService.createVaultKeep(vaultKeepData)
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
 
-                    // const vaultId = vault.id
-                    // const keepId =
-                    await keepsService.createVaultKeep(vaultId, keepId)
+                }
+            },
+            async destroyVaultKeep() {
+                try {
+                    const wantstoDestroy = await Pop.confirm('Are you sure you want to destroy this VaultKeep? ');
+                    if (!wantstoDestroy) {
+                        return;
+                    }
+
+                    const vaultKeepId = AppState.vaultKeeps.id
+                    AppState.activeKeep.kept--
+                    await keepsService.destroyVaultKeep(vaultKeepId)
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)
