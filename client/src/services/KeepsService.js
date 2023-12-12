@@ -47,7 +47,11 @@ class KeepsService {
     async destroyVaultKeep(vaultKeepId) {
         const res = await api.delete(`api/vaultkeeps/${vaultKeepId}`)
         logger.log('destroying this vaultkeep', res.data)
-        AppState.vaultKeeps = AppState.vaultKeeps.filter((vaultKeep) => vaultKeep.id != vaultKeepId)
+        logger.log(vaultKeepId)
+        // AppState.vaultKeeps = AppState.vaultKeeps.filter((vaultKeep) => vaultKeep.id != vaultKeepId)
+        const valIndex = AppState.vaultKeeps.findIndex(vaultKeep => vaultKeep.id == vaultKeepId)
+        if (valIndex == -1) { throw new Error('No vault keep found with this id') }
+        AppState.vaultKeeps.splice(valIndex, 1)
     }
 }
 export const keepsService = new KeepsService()

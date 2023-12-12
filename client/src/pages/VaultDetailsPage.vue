@@ -22,19 +22,25 @@
 <script>
 import { useRoute, useRouter } from 'vue-router';
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, reactive, onMounted, watch } from 'vue';
 import { vaultsService } from '../services/VaultsService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import KeepCard from '../components/KeepCard.vue';
 export default {
     setup() {
+        // const watchableVaultId = computed(() => AppState.vaults.id)
         const route = useRoute()
         const router = useRouter()
         onMounted(() => {
             getVaultById()
             getKeepsByVaultId()
         })
+        // watch(watchableVaultId, () => {
+        //     // keepsService.clearAppState()
+        //     getVaultById()
+        //     getKeepsByVaultId()
+        // }, { immediate: true });
         async function getVaultById() {
             try {
                 const vaultId = route.params.vaultId
@@ -60,7 +66,9 @@ export default {
         }
         return {
             vault: computed(() => AppState.activeVault),
-            keeps: computed(() => AppState.keeps)
+            keeps: computed(() => AppState.keeps),
+            vaultKeeps: computed(() => AppState.vaultKeeps),
+            keep: computed(() => AppState.activeKeep)
         }
     },
     components: { KeepCard }

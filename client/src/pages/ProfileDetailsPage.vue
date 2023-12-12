@@ -51,11 +51,11 @@ export default {
     setup() {
         const route = useRoute();
         const watchableProfileId = computed(() => route.params.profileId);
-        // onMounted(() => {
-        //     getProfile();
-        //     getKeepsByProfileId();
-        //     getVaultsByProfileId()
-        // });
+        onMounted(() => {
+            getProfile();
+            getKeepsByProfileId();
+            getVaultsByProfileId()
+        });
         async function getProfile() {
             try {
                 const profileId = route.params.profileId;
@@ -86,12 +86,12 @@ export default {
 
             }
         }
-        watch(watchableProfileId, () => {
-            keepsService.clearAppState()
-            getProfile()
-            getVaultsByProfileId()
-            getKeepsByProfileId()
-        }, { immediate: true });
+        // watch(watchableProfileId, () => {
+        //     keepsService.clearAppState()
+        //     getProfile()
+        //     getVaultsByProfileId()
+        //     getKeepsByProfileId()
+        // }, { immediate: true });
         return {
             keeps: computed(() => AppState.keeps),
             account: computed(() => AppState.account),
