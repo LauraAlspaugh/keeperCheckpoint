@@ -55,8 +55,8 @@ import { VaultKeep } from '../models/VaultKeep.js';
 
 
 export default {
-    props: { vaultKeepProp: { type: VaultKeep, required: true } },
-    setup(props) {
+    // props: { vaultKeepProp: { type: VaultKeep, required: true } },
+    setup() {
 
         const editable = ref({})
         const watchableKeepId = computed(() => AppState.keeps.id)
@@ -120,8 +120,8 @@ export default {
                     if (!wantstoDestroy) {
                         return;
                     }
-
-                    const vaultKeepId = keep.vaultKeepId
+                    logger.log(AppState.activeKeep)
+                    const vaultKeepId = AppState.activeKeep.vaultKeepId
                     AppState.activeKeep.kept--
                     logger.log('am i reaching this point?', vaultKeepId)
                     await keepsService.destroyVaultKeep(vaultKeepId)

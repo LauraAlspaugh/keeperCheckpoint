@@ -7,6 +7,8 @@
             :alt="keepProp.creator.name">
         <i v-if="keepProp.creator.id == account.id" class="mdi mdi-close top-right fs-3" title="delete this keep"
             role="button" @click="destroyKeep()"></i>
+        <!-- <i @click="destroyVaultKeep()" role="button" class="mdi mdi-delete fs-3 top-mid-right"></i> -->
+
     </div>
     <KeepModal />
 </template>
@@ -45,6 +47,23 @@ export default {
                     Pop.error(error);
                 }
             }
+            // async destroyVaultKeep() {
+            //     try {
+            //         const wantstoDestroy = await Pop.confirm('Are you sure you want to destroy this VaultKeep? ');
+            //         if (!wantstoDestroy) {
+            //             return;
+            //         }
+
+            //         const vaultKeepId = props.keepProp.vaultKeepId
+            //         // AppState.activeKeep.kept--
+            //         logger.log('am i reaching this point?', vaultKeepId)
+            //         await keepsService.destroyVaultKeep(vaultKeepId)
+            //     } catch (error) {
+            //         logger.error(error)
+            //         Pop.error(error)
+
+            //     }
+            // }
         };
     },
     components: { KeepModal }
@@ -82,5 +101,11 @@ export default {
     position: absolute;
     top: 8px;
     right: 16px;
+}
+
+.top-mid-right {
+    position: absolute;
+    top: 8px;
+    right: 50px;
 }
 </style>

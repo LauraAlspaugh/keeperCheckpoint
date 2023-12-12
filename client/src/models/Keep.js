@@ -10,6 +10,7 @@ export class Keep {
         this.kept = data.kept
         this.creatorId = data.creatorId
         this.creator = data.creator
+        this.vaultKeepId = data.vaultKeepId
     }
 }
 const keepdata = {
