@@ -3,6 +3,7 @@
         <img class="img-fluid keep-image" title="image of vault" :src="vaultProp.img" :alt="vaultProp.name">
         <router-link :to="{ name: 'Vault', params: { vaultId: vaultProp.id } }">
             <p class="bottom-left text-light fs-3" :title="vaultProp.name">{{ vaultProp.name }}</p>
+            <i v-if="vaultProp.isPrivate == true" class="mdi mdi-lock-outline text-white fs-3 bottom-mid-left"></i>
         </router-link>
         <!-- <img class="img-fluid rounded-circle bottom-right" :title="vaultProp.creator.name" :src="vaultProp.creator.picture"
             :alt="vaultProp.creator.name"> -->
@@ -72,5 +73,13 @@ export default {
     position: absolute;
     top: 8px;
     right: 16px;
+}
+
+.bottom-mid-left {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 40px;
+    width: 40px;
 }
 </style>

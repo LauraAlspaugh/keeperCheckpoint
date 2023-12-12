@@ -51,9 +51,13 @@ import { computed, reactive, onMounted, watchEffect, watch, ref } from 'vue';
 import { keepsService } from '../services/KeepsService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
-export default {
+import { VaultKeep } from '../models/VaultKeep.js';
 
-    setup() {
+
+export default {
+    props: { vaultKeepProp: { type: VaultKeep, required: true } },
+    setup(props) {
+
         const editable = ref({})
         const watchableKeepId = computed(() => AppState.keeps.id)
         // onMounted(() => {
@@ -80,7 +84,9 @@ export default {
             keep: computed(() => AppState.activeKeep),
             keeps: computed(() => AppState.keeps),
             vaults: computed(() => AppState.vaults),
+            vault: computed(() => AppState.activeVault),
             vaultkeeps: computed(() => AppState.vaultKeeps),
+            vaultKeep: computed(() => AppState.activeVaultKeep),
             async destroyKeep() {
                 try {
                     const wantstoDestroy = await Pop.confirm('Are you sure you want to destroy this Keep? ');
@@ -115,8 +121,9 @@ export default {
                         return;
                     }
 
-                    const vaultKeepId = AppState.vaultKeeps.id
+                    const vaultKeepId = keep.vaultKeepId
                     AppState.activeKeep.kept--
+                    logger.log('am i reaching this point?', vaultKeepId)
                     await keepsService.destroyVaultKeep(vaultKeepId)
                 } catch (error) {
                     logger.error(error)
