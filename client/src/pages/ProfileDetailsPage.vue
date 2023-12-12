@@ -38,7 +38,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, reactive, onMounted, watch } from 'vue';
 import { profileService } from '../services/ProfileService.js';
 import { vaultsService } from '../services/VaultsService.js';
 import { useRoute } from 'vue-router';
@@ -46,14 +46,16 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import KeepCard from '../components/KeepCard.vue';
 import VaultCard from '../components/VaultCard.vue';
+import { keepsService } from '../services/KeepsService.js';
 export default {
     setup() {
         const route = useRoute();
-        onMounted(() => {
-            getProfile();
-            getKeepsByProfileId();
-            getVaultsByProfileId()
-        });
+        const watchableProfileId = computed(() => route.params.profileId);
+        // onMounted(() => {
+        //     getProfile();
+        //     getKeepsByProfileId();
+        //     getVaultsByProfileId()
+        // });
         async function getProfile() {
             try {
                 const profileId = route.params.profileId;
@@ -84,6 +86,12 @@ export default {
 
             }
         }
+        watch(watchableProfileId, () => {
+            keepsService.clearAppState()
+            getProfile()
+            getVaultsByProfileId()
+            getKeepsByProfileId()
+        }, { immediate: true });
         return {
             keeps: computed(() => AppState.keeps),
             account: computed(() => AppState.account),

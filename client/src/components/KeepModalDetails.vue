@@ -19,12 +19,11 @@
                     <!-- <label for="vault" class="form-label">Vault</label> -->
                     <select v-model="editable.vault" class="form-select" name="" id="">
 
-                        <option :value="vault" v-for="vault in vaults" :key="vault">
-                            {{ vault.name }}
+                        <option :value="vault" v-for="vault in vaults" :key="vault" {{ vault.name }}>
 
                         </option>
                     </select>
-                    <button @click="createVaultKeep()" class="btn btn-outline-dark mt-2">Save</button>
+                    <button @click="createVaultKeep(vault.id, keep.id)" class="btn btn-outline-dark mt-2">Save</button>
 
 
 
@@ -71,11 +70,12 @@ export default {
         //     }
         // }
         watch(watchableKeepId, () => {
-            keepsService.clearAppState()
+            // keepsService.clearAppState()
             // getKeepById()
         }, { immediate: true });
         return {
             editable,
+            profile: computed(() => AppState.activeProfile),
             keep: computed(() => AppState.activeKeep),
             keeps: computed(() => AppState.keeps),
             vaults: computed(() => AppState.vaults),
@@ -93,11 +93,11 @@ export default {
                     Pop.error(error);
                 }
             },
-            async createVaultKeep() {
+            async createVaultKeep(vaultId, keepId) {
                 try {
 
                     // const vaultId = vault.id
-                    const keepId = keep.id
+                    // const keepId =
                     await keepsService.createVaultKeep(vaultId, keepId)
                 } catch (error) {
                     logger.error(error)
