@@ -122,7 +122,7 @@ export default {
                     }
                     logger.log(AppState.activeKeep)
                     const vaultKeepId = AppState.activeKeep.vaultKeepId
-                    AppState.activeKeep.kept--
+                    // AppState.activeKeep.kept--
                     logger.log('am i reaching this point?', vaultKeepId)
                     await keepsService.destroyVaultKeep(vaultKeepId)
                 } catch (error) {

@@ -67,7 +67,7 @@ export default {
         return {
             vault: computed(() => AppState.activeVault),
             keeps: computed(() => AppState.keeps),
-            vaultKeeps: computed(() => AppState.vaultKeeps),
+            // vaultKeeps: computed(() => AppState.vaultKeeps),
             keep: computed(() => AppState.activeKeep)
         }
     },

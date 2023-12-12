@@ -48,10 +48,12 @@ class KeepsService {
         const res = await api.delete(`api/vaultkeeps/${vaultKeepId}`)
         logger.log('destroying this vaultkeep', res.data)
         logger.log(vaultKeepId)
-        // AppState.vaultKeeps = AppState.vaultKeeps.filter((vaultKeep) => vaultKeep.id != vaultKeepId)
-        const valIndex = AppState.vaultKeeps.findIndex(vaultKeep => vaultKeep.id == vaultKeepId)
-        if (valIndex == -1) { throw new Error('No vault keep found with this id') }
-        AppState.vaultKeeps.splice(valIndex, 1)
+        logger.log(AppState.keeps)
+        AppState.keeps = AppState.keeps.filter((keep) => keep.vaultKeepId != vaultKeepId)
+        // const valIndex = AppState.keeps.findIndex(vaultkeep => vaultKeepId == vaultKeepId)
+        // if (valIndex == -1) { throw new Error('No vault keep found with this id') }
+        // AppState.keeps.splice(valIndex, 1)
+        // logger.log(valIndex)
     }
 }
 export const keepsService = new KeepsService()

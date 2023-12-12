@@ -7,7 +7,7 @@
       </div>
     </router-link>
     <button class="btn btn-outline-dark" data-bs-target="#newKeepModal" data-bs-toggle="modal"
-      title="create a keep">Create</button>
+      title="create a keep">Create Keep</button>
     <button class="btn btn-outline-dark m-2" data-bs-target="#newVaultModal" data-bs-toggle="modal"
       title="create a keep">Create Vault</button>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
