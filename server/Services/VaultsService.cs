@@ -44,6 +44,7 @@ public class VaultsService
     internal List<Vault> GetMyVaults(string userId)
     {
         List<Vault> vaults = _vaultsRepository.GetMyVaults(userId);
+        vaults = vaults.FindAll(vault => vault.CreatorId == userId);
         return vaults;
     }
 
@@ -56,7 +57,7 @@ public class VaultsService
 
         }
 
-        if (vault.IsPrivate == true)
+        if (vault.IsPrivate == true && vault.CreatorId != userId)
         {
             throw new Exception("There has been an issue...");
         }
@@ -66,7 +67,7 @@ public class VaultsService
     internal List<Vault> GetVaultsByProfileId(string profileId)
     {
         List<Vault> vaults = _vaultsRepository.GetVaultsByProfileId(profileId);
-        vaults = vaults.FindAll(vault => vault.IsPrivate == false);
+        vaults = vaults.FindAll(vault => vault.IsPrivate == false && vault.CreatorId == profileId);
         return vaults;
     }
 }

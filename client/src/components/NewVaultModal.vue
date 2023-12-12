@@ -68,6 +68,9 @@ export default {
             async createVault() {
                 try {
                     const vaultData = editable2.value
+                    if (vaultData.isPrivate == null) {
+                        vaultData.isPrivate = false
+                    }
                     const vault = await vaultsService.createVault(vaultData)
                     Pop.success('Vault created!')
                     Modal.getOrCreateInstance('#newVaultModal').hide()

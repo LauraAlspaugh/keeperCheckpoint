@@ -16,14 +16,16 @@
                     <p> {{ keep.description }}</p>
                     <!-- <button @click="createVaultKeep()" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                         v-for="vault in vaults" :key="vault.id">{{ vault.name }}</button> -->
-                    <label for="vault" class="form-label">Vault</label>
+                    <!-- <label for="vault" class="form-label">Vault</label> -->
                     <select v-model="editable.vault" class="form-select" name="" id="">
 
                         <option :value="vault" v-for="vault in vaults" :key="vault">
                             {{ vault.name }}
+
                         </option>
                     </select>
                     <button @click="createVaultKeep()" class="btn btn-outline-dark mt-2">Save</button>
+
 
 
 
@@ -94,8 +96,8 @@ export default {
             async createVaultKeep() {
                 try {
 
-                    const vaultId = vault.id
-                    const keepId = activeKeep.id
+                    // const vaultId = vault.id
+                    const keepId = keep.id
                     await keepsService.createVaultKeep(vaultId, keepId)
                 } catch (error) {
                     logger.error(error)
