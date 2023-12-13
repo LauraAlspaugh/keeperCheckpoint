@@ -1,11 +1,16 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid p-0">
         <section class="row">
             <div v-if="keep" class="d-flex">
                 <div class="col-md-6 p-0">
                     <img class="img-fluid image-card" :src="keep.img" :alt="keep.name" title="image of keep">
                 </div>
                 <div class=" col-md-6 p-2 ">
+                    <div class="d-flex justify-content-end w-100">
+
+                        <button type="button" class="btn-close d-flex justify-content-end" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
                     <div class=" keep-name mt-5 text-center ">
                         <div class="d-flex justify-content-center  ">
 
@@ -21,7 +26,7 @@
                     <!-- <button @click="createVaultKeep()" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                         v-for="vault in vaults" :key="vault.id">{{ vault.name }}</button> -->
                     <!-- <label for="vault" class="form-label">Vault</label> -->
-                    <select @click="getMyVaults()" v-model="editable.vaultId" class="form-select m-2" name="vault"
+                    <select @click="getMyVaults()" v-model="editable.vaultId" class="form-select  p-2" name="vault"
                         id="vault">
 
                         <option :value="vault.id" v-for="vault in vaults" :key="vault">{{ vault.name }}</option>
