@@ -7,7 +7,8 @@
         </router-link>
         <!-- <img class="img-fluid rounded-circle bottom-right" :title="vaultProp.creator.name" :src="vaultProp.creator.picture"
             :alt="vaultProp.creator.name"> -->
-        <i class="mdi mdi-close top-right fs-3" title="delete this vault" role="button" @click="destroyVault()"></i>
+        <i v-if="vaultProp.creator.id == account.id" class="mdi mdi-close top-right fs-3" title="delete this vault"
+            role="button" @click="destroyVault()"></i>
     </div>
 </template>
 
@@ -24,6 +25,7 @@ export default {
     setup(props) {
         return {
             vaults: computed(() => AppState.vaults),
+            account: computed(() => AppState.account),
             async destroyVault() {
                 try {
                     const wantstoDestroy = await Pop.confirm('Are you sure you want to destroy this Vault? ');

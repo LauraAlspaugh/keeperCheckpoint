@@ -2,14 +2,15 @@
     <div class="container-fluid">
         <section class="row">
             <div v-if="keep" class="d-flex">
-                <div class="col-6 d-flex">
-                    <img class="img-fluid image-card" :src="keep.img" :alt="keep.name">
+                <div class="col-md-6 d-flex">
+                    <img class="img-fluid image-card" :src="keep.img" :alt="keep.name" title="image of keep">
                 </div>
-                <div class="col-6 p-2 ">
+                <div class=" col-md-6 p-2 ">
                     <div class=" keep-name mt-5 text-center">
-                        <p>{{ keep.views }} <i class="mdi mdi-eye fs-5"></i></p>
-                        <p>{{ keep.kept }}<i class="mdi mdi-alpha-k-circle-outline fs-5"></i> </p>
-                        <p class="fs-2 text-center mb-3 ">{{ keep.name }}</p>
+                        <p>{{ keep.views }} <i class="mdi mdi-eye fs-5" title="view count"></i></p>
+                        <p>{{ keep.kept }}<i class="mdi mdi-alpha-k-circle-outline fs-5"
+                                title="times this keep has been saved"></i> </p>
+                        <p class="fs-2 text-center mb-3 " :title="keep.name">{{ keep.name }}</p>
                         <!-- <i class="mdi mdi-delete text-center fs-3" title="delete this keep" role="button"
                             @click="destroyKeep()"> </i> -->
                     </div>
@@ -23,8 +24,10 @@
 
 
                     </select>
-                    <button @click="createVaultKeep()" class="btn btn-outline-dark mt-2">Save</button>
-                    <button @click="destroyVaultKeep()" class="btn btn-outline-dark mt-2 m-2">Remove</button>
+                    <button @click="createVaultKeep()" class="btn btn-outline-dark mt-2"
+                        title="Save this to your vault">Save</button>
+                    <button @click="destroyVaultKeep()" class="btn btn-outline-dark mt-2 m-2"
+                        title="remove this vault keep">Remove</button>
 
 
 
@@ -54,6 +57,7 @@ import Pop from '../utils/Pop.js';
 import { VaultKeep } from '../models/VaultKeep.js';
 import { useRoute } from 'vue-router';
 import { vaultsService } from '../services/VaultsService.js';
+import { accountService } from '../services/AccountService.js';
 
 
 export default {
@@ -144,7 +148,16 @@ export default {
                     Pop.error(error)
 
                 }
-            }
+            },
+            // async getMyVaults() {
+            //     try {
+            //         await accountService.getMyVaults()
+            //     } catch (error) {
+            //         logger.error(error)
+            //         Pop.error(error)
+
+            //     }
+            // }
 
         }
     }

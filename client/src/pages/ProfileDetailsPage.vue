@@ -17,7 +17,7 @@
             <div>
                 <p class="fs-1 keep-title">Vaults</p>
             </div>
-            <div v-for="vault in vaults" :key="vault.id" class="col-3 p-3">
+            <div v-for="vault in vaults" :key="vault.id" class=" col-12 col-md-3 p-3">
                 <VaultCard :vaultProp="vault" />
             </div>
         </section>
