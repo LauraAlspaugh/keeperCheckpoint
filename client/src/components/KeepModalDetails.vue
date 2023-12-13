@@ -7,9 +7,12 @@
                 </div>
                 <div class=" col-md-6 p-2 ">
                     <div class=" keep-name mt-5 text-center ">
-                        <p>{{ keep.views }} <i class="mdi mdi-eye fs-5" title="view count"></i></p>
-                        <p>{{ keep.kept }}<i class="mdi mdi-alpha-k-circle-outline fs-5"
-                                title="times this keep has been saved"></i> </p>
+                        <div class="d-flex justify-content-center  ">
+
+                            <p class="p-2">{{ keep.views }} <i class="mdi mdi-eye fs-5" title="view count"></i></p>
+                            <p class="p-2">{{ keep.kept }}<i class="mdi mdi-alpha-k-circle-outline fs-5"
+                                    title="times this keep has been saved"></i> </p>
+                        </div>
                         <p class="fs-2 text-center mb-3 keep-name" :title="keep.name">{{ keep.name }}</p>
                         <!-- <i class="mdi mdi-delete text-center fs-3" title="delete this keep" role="button"
                             @click="destroyKeep()"> </i> -->
@@ -18,7 +21,8 @@
                     <!-- <button @click="createVaultKeep()" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                         v-for="vault in vaults" :key="vault.id">{{ vault.name }}</button> -->
                     <!-- <label for="vault" class="form-label">Vault</label> -->
-                    <select @click="getMyVaults()" v-model="editable.vaultId" class="form-select" name="vault" id="vault">
+                    <select @click="getMyVaults()" v-model="editable.vaultId" class="form-select m-2" name="vault"
+                        id="vault">
 
                         <option :value="vault.id" v-for="vault in vaults" :key="vault">{{ vault.name }}</option>
 
