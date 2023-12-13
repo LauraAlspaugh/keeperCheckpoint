@@ -6,9 +6,9 @@
             Co.</span></i>
       </div>
     </router-link>
-    <button class="btn btn-outline-dark" data-bs-target="#newKeepModal" data-bs-toggle="modal"
+    <button v-if="account.id" class="btn btn-outline-dark" data-bs-target="#newKeepModal" data-bs-toggle="modal"
       title="create a keep">Create Keep</button>
-    <button class="btn btn-outline-dark m-2" data-bs-target="#newVaultModal" data-bs-toggle="modal"
+    <button v-if="account.id" class="btn btn-outline-dark m-2" data-bs-target="#newVaultModal" data-bs-toggle="modal"
       title="create a keep">Create Vault</button>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,11 +35,12 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
 import NewKeepModal from './NewKeepModal.vue';
 import NewVaultModal from './NewVaultModal.vue';
+import { AppState } from '../AppState.js';
 export default {
   setup() {
 
@@ -51,6 +52,7 @@ export default {
 
     return {
       theme,
+      account: computed(() => AppState.account),
       toggleTheme() {
         theme.value = theme.value == 'light' ? 'dark' : 'light'
         document.documentElement.setAttribute('data-bs-theme', theme.value)
