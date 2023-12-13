@@ -17,7 +17,7 @@
                     <!-- <button @click="createVaultKeep()" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                         v-for="vault in vaults" :key="vault.id">{{ vault.name }}</button> -->
                     <!-- <label for="vault" class="form-label">Vault</label> -->
-                    <select v-model="editable.vaultId" class="form-select" name="vault" id="vault">
+                    <select @click="getMyVaults()" v-model="editable.vaultId" class="form-select" name="vault" id="vault">
 
                         <option :value="vault.id" v-for="vault in vaults" :key="vault">{{ vault.name }}</option>
 
@@ -52,12 +52,14 @@ import { keepsService } from '../services/KeepsService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { VaultKeep } from '../models/VaultKeep.js';
+import { useRoute } from 'vue-router';
+import { vaultsService } from '../services/VaultsService.js';
 
 
 export default {
     // props: { vaultKeepProp: { type: VaultKeep, required: true } },
     setup() {
-
+        const route = useRoute()
         const editable = ref({})
         const watchableKeepId = computed(() => AppState.keeps.id)
         // onMounted(() => {
@@ -78,6 +80,7 @@ export default {
             // keepsService.clearAppState()
             // getKeepById()
         }, { immediate: true });
+
         return {
             editable,
             profile: computed(() => AppState.profile),
@@ -87,6 +90,7 @@ export default {
             vault: computed(() => AppState.activeVault),
             vaultkeeps: computed(() => AppState.vaultKeeps),
             vaultKeep: computed(() => AppState.activeVaultKeep),
+
             async destroyKeep() {
                 try {
                     const wantstoDestroy = await Pop.confirm('Are you sure you want to destroy this Keep? ');
@@ -114,6 +118,16 @@ export default {
 
                 }
             },
+            // async getVaultsByProfileId() {
+            //     try {
+            //         const profileId = AppState.activeProfile
+            //         await vaultsService.getVaults(profileId)
+            //     } catch (error) {
+            //         logger.error(error)
+            //         Pop.error(error)
+
+            //     }
+            // },
             async destroyVaultKeep() {
                 try {
                     const wantstoDestroy = await Pop.confirm('Are you sure you want to destroy this VaultKeep? ');
@@ -131,6 +145,7 @@ export default {
 
                 }
             }
+
         }
     }
 };

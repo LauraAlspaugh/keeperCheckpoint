@@ -9,7 +9,7 @@
             </div>
         </section>
         <section v-if="vault" class="row">
-            <div v-for="keep in keeps" :key="keep.id" class="col-3">
+            <div v-for="keep in keeps" :key="keep.id" class="col-3 p-3">
 
                 <KeepCard :keepProp="keep" />
 

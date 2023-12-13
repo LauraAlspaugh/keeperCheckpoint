@@ -11,13 +11,13 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input v-model="editable2.name" type="text" class="form-control" id="name"
-                                aria-describedby="emailHelp" maxlength="255" required>
+                                aria-describedby="emailHelp" maxlength="150" required placeholder="Name of Vault...">
 
                         </div>
                         <div class="mb-3">
                             <label for="imgUrl" class="form-label">Image Url</label>
                             <input v-model="editable2.img" type="url" class="form-control" id="imgUrl"
-                                aria-describedby="emailHelp" maxlength="1000" required>
+                                aria-describedby="emailHelp" maxlength="1000" required placeholder="Image Url...">
 
                         </div>
                         <!-- <div class="mb-3">
@@ -32,7 +32,7 @@
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
                             <textarea v-model="editable2.description" type="text" class="form-control" id="description"
-                                rows="5" maxlength="255"></textarea>
+                                rows="5" maxlength="700" placeholder="Description..."></textarea>
                         </div>
                         <div class="mb-3">
                             <label class="me-2" for="isPrivate">Private</label>
