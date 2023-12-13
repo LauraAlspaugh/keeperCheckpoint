@@ -1,8 +1,8 @@
 <template>
-    <div class="container-fluid">
-        <section v-if="vault" class="row">
-            <div class="col-12 p-4 vault-card">
-                <img class="img-fluid vault-image" :src="vault.img" alt="">
+    <div class="container">
+        <section v-if="vault" class="row d-flex justify-content-center">
+            <div class="col-8 p-4 vault-card">
+                <img class="img-fluid vault-image " :src="vault.img" alt="">
                 <p class="centered ">{{ vault.name }}</p>
                 <p class="below">By {{ vault.creator.name }}</p>
                 <p class="fs-3  text-center">{{ keeps.length }} keeps</p>
@@ -98,6 +98,7 @@ export default {
     font-size: 70px;
     backdrop-filter: blur(15px);
     border-radius: 7px;
+    font-family: 'Pinyon Script', cursive;
 }
 
 .below {
@@ -109,5 +110,6 @@ export default {
     font-size: 40px;
     backdrop-filter: blur(10px);
     border-radius: 7px;
+    font-family: 'Pinyon Script', cursive;
 }
 </style>

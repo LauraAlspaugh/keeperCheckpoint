@@ -2,8 +2,9 @@
     <div class="keep-card">
         <img class="img-fluid keep-image" title="image of vault" :src="vaultProp.img" :alt="vaultProp.name">
         <router-link :to="{ name: 'Vault', params: { vaultId: vaultProp.id } }">
-            <p class="bottom-left text-light fs-3" :title="vaultProp.name">{{ vaultProp.name }}</p>
-            <i v-if="vaultProp.isPrivate == true" class="mdi mdi-lock-outline text-white fs-3 bottom-mid-left"></i>
+            <p class="bottom-left text-light vault-name fs-3" :title="vaultProp.name">{{ vaultProp.name }}</p>
+            <i v-if="vaultProp.isPrivate == true" class="mdi mdi-lock-outline text-white fs-3 bottom-mid-left"
+                title="this vault is locked"></i>
         </router-link>
         <!-- <img class="img-fluid rounded-circle bottom-right" :title="vaultProp.creator.name" :src="vaultProp.creator.picture"
             :alt="vaultProp.creator.name"> -->
@@ -49,6 +50,10 @@ export default {
 .keep-image {
     box-shadow: 0px 3px 10px gray;
     border-radius: 7px;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    position: center;
 }
 
 .keep-card {
@@ -75,6 +80,8 @@ export default {
     position: absolute;
     top: 8px;
     right: 16px;
+    background-color: white;
+    border-radius: 20px;
 }
 
 .bottom-mid-left {
@@ -83,5 +90,9 @@ export default {
     right: 20px;
     height: 40px;
     width: 40px;
+}
+
+.vault-name {
+    font-family: 'Pinyon Script', cursive;
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
-    <div class="container-fluid">
-        <section v-if="profile" class="row">
-            <div v-if="profile" class="col-12 p-4">
+    <div class="container">
+        <section v-if="profile" class="row d-flex justify-content-center">
+            <div v-if="profile" class="col-8 p-4">
                 <img class="img-fluid profile-image" :src="profile.coverImg" alt="">
             </div>
             <div class="col-12 text-center">
                 <img class="img-fluid rounded-circle profile-img" :src="profile.picture" alt="">
-                <p class=" fs-1 mt-5 text-center ">{{ profile.name }}</p>
-                <p class="fs-5">
+                <p class=" fs-1 mt-5 text-center profile-name ">{{ profile.name }}</p>
+                <p class="fs-3 ">
                     {{ vaults.length }} Vaults || {{ keeps.length }} Keeps
                 </p>
 
@@ -15,7 +15,7 @@
         </section>
         <section class="row">
             <div>
-                <p class="fs-1 keep-title">Vaults</p>
+                <p class="fs-1 keep-title p-3">Vaults</p>
             </div>
             <div v-for="vault in vaults" :key="vault.id" class=" col-12 col-md-3 p-3">
                 <VaultCard :vaultProp="vault" />
@@ -23,7 +23,7 @@
         </section>
         <section class="row">
             <div>
-                <p class="fs-1 keep-title">Keeps</p>
+                <p class="fs-1 keep-title p-3">Keeps</p>
             </div>
             <div class="masonry">
 
@@ -120,6 +120,10 @@ export default {
 }
 
 .keep-title {
+    font-family: 'Pinyon Script', cursive;
+}
+
+.profile-name {
     font-family: 'Pinyon Script', cursive;
 }
 

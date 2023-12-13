@@ -1,7 +1,7 @@
 <template>
   <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <div class="col-12 ">
+    <h1 class="welcome-title p-4">Welcome {{ account.name }}</h1>
+    <div class="col-12  ">
       <img class="img-fluid cover-image" :src="account.coverImg" alt="">
 
     </div>
@@ -72,7 +72,7 @@ export default {
   height: 200px;
   object-fit: cover;
   position: center;
-  border-radius: 7px;
+  border-radius: 10px;
   padding: 5px;
 
 }
@@ -81,5 +81,9 @@ export default {
   width: 100px;
   height: 100px;
   border: 2px solid gray;
+}
+
+.welcome-title {
+  font-family: 'Pinyon Script', cursive;
 }
 </style>

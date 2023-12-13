@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-sm navbar-dark nav-color px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <i class="mdi mdi-arrow-down fs-1 photo-title"><span class="plan-title fs-1 p-0" title="back to homepage">Keepr
+  <nav class="navbar navbar-expand-sm navbar-dark nav-color px-3 ">
+    <router-link class="navbar-brand d-flex " :to="{ name: 'Home' }">
+      <div class="d-flex flex-column align-items-center ">
+        <i class="mdi mdi-arrow-down fs-1 photo-title "><span class="plan-title fs-1 p-0" title="back to homepage">Keepr
             Co.</span></i>
       </div>
     </router-link>
@@ -81,6 +81,7 @@ a:hover {
 
 .nav-color {
   background-color: #E9D8D6;
+  height: 90px;
   /* background-color: #FEF6F0; */
 }
 

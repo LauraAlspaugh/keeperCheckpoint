@@ -2,7 +2,7 @@
     <div class="keep-card">
         <img class="img-fluid keep-image" title="image of keep" :src="keepProp.img" :alt="keepProp.name">
         <p @click="setActiveKeep(keepProp)" data-bs-toggle="modal" data-bs-target="#keepModal" type="button"
-            class="bottom-left text-light fs-3" :title="keepProp.name">{{ keepProp.name }}</p>
+            class="bottom-left text-light keep-name fs-3" text-break :title="keepProp.name">{{ keepProp.name }}</p>
         <img class="img-fluid rounded-circle bottom-right" :title="keepProp.creator.name" :src="keepProp.creator.picture"
             :alt="keepProp.creator.name">
         <i v-if="keepProp.creator.id == account.id" class="mdi mdi-close top-right fs-3" title="delete this keep"
@@ -77,6 +77,10 @@ export default {
     border-radius: 7px;
 }
 
+.keep-name {
+    font-family: 'Pinyon Script', cursive;
+}
+
 .keep-card {
     position: relative;
 }
@@ -101,6 +105,8 @@ export default {
     position: absolute;
     top: 8px;
     right: 16px;
+    background-color: white;
+    border-radius: 23px;
 }
 
 .top-mid-right {

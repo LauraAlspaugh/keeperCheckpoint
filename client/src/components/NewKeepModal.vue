@@ -31,8 +31,8 @@
                         </div> -->
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
-                            <textarea v-model="editable.description" type="text" class="form-control" id="description"
-                                rows="5" maxlength="1000" required placeholder="Description..."></textarea>
+                            <textarea v-model="editable.description" text-break type="text" class="form-control"
+                                id="description" rows="5" maxlength="1000" required placeholder="Description..."></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-outline-dark">Submit</button>

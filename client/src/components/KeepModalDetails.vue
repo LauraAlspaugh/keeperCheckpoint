@@ -2,19 +2,19 @@
     <div class="container-fluid">
         <section class="row">
             <div v-if="keep" class="d-flex">
-                <div class="col-md-6 d-flex">
+                <div class="col-md-6 p-0">
                     <img class="img-fluid image-card" :src="keep.img" :alt="keep.name" title="image of keep">
                 </div>
                 <div class=" col-md-6 p-2 ">
-                    <div class=" keep-name mt-5 text-center">
+                    <div class=" keep-name mt-5 text-center ">
                         <p>{{ keep.views }} <i class="mdi mdi-eye fs-5" title="view count"></i></p>
                         <p>{{ keep.kept }}<i class="mdi mdi-alpha-k-circle-outline fs-5"
                                 title="times this keep has been saved"></i> </p>
-                        <p class="fs-2 text-center mb-3 " :title="keep.name">{{ keep.name }}</p>
+                        <p class="fs-2 text-center mb-3 keep-name" :title="keep.name">{{ keep.name }}</p>
                         <!-- <i class="mdi mdi-delete text-center fs-3" title="delete this keep" role="button"
                             @click="destroyKeep()"> </i> -->
                     </div>
-                    <p> {{ keep.description }}</p>
+                    <p class="p-4"> {{ keep.description }}</p>
                     <!-- <button @click="createVaultKeep()" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                         v-for="vault in vaults" :key="vault.id">{{ vault.name }}</button> -->
                     <!-- <label for="vault" class="form-label">Vault</label> -->
@@ -24,9 +24,9 @@
 
 
                     </select>
-                    <button @click="createVaultKeep()" class="btn btn-outline-dark mt-2"
+                    <button @click="createVaultKeep()" class="btn btn-outline-dark m-2 "
                         title="Save this to your vault">Save</button>
-                    <button @click="destroyVaultKeep()" class="btn btn-outline-dark mt-2 m-2"
+                    <button v-if="$route.name == 'Vault'" @click="destroyVaultKeep()" class="btn btn-outline-dark mt-2 m-2"
                         title="remove this vault keep">Remove</button>
 
 
@@ -90,7 +90,7 @@ export default {
             profile: computed(() => AppState.profile),
             keep: computed(() => AppState.activeKeep),
             keeps: computed(() => AppState.keeps),
-            vaults: computed(() => AppState.vaults),
+            vaults: computed(() => AppState.myVaults),
             vault: computed(() => AppState.activeVault),
             vaultkeeps: computed(() => AppState.vaultKeeps),
             vaultKeep: computed(() => AppState.activeVaultKeep),
@@ -169,6 +169,7 @@ export default {
 .image-card {
     width: 100%;
     height: 100%;
+    border-radius: 7px;
 }
 
 .keep-name {
@@ -179,5 +180,9 @@ export default {
 .creator-image {
     width: 40px;
     height: 40px;
+}
+
+.keep-name {
+    font-family: 'Pinyon Script', cursive;
 }
 </style>

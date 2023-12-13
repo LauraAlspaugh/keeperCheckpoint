@@ -20,6 +20,7 @@ const routes = [
     path: '/profile/:profileId',
     name: 'Profile',
     component: loadPage('ProfileDetailsPage'),
+    beforeEnter: authSettled
 
   },
   {
