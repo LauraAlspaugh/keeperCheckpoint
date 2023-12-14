@@ -1,11 +1,11 @@
 <template>
     <div class="container-fluid p-0">
         <section class="row">
-            <div v-if="keep" class="d-flex">
-                <div class="col-md-6 p-0">
+            <div v-if="keep" class="mobile-view">
+                <div class="col-12 col-md-6 p-0">
                     <img class="img-fluid image-card" :src="keep.img" :alt="keep.name" title="image of keep">
                 </div>
-                <div class=" col-md-6 p-2 ">
+                <div class="col-12 col-md-6 p-2 ">
                     <div class="d-flex justify-content-end w-100">
 
                         <button type="button" class="btn-close d-flex justify-content-end" data-bs-dismiss="modal"
@@ -22,7 +22,7 @@
                         <!-- <i class="mdi mdi-delete text-center fs-3" title="delete this keep" role="button"
                             @click="destroyKeep()"> </i> -->
                     </div>
-                    <p class="p-4"> {{ keep.description }}</p>
+                    <p class="p-4 text-center mobile-description"> {{ keep.description }}</p>
                     <!-- <button @click="createVaultKeep()" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                         v-for="vault in vaults" :key="vault.id">{{ vault.name }}</button> -->
                     <!-- <label for="vault" class="form-label">Vault</label> -->
@@ -179,6 +179,8 @@ export default {
     width: 100%;
     height: 100%;
     border-radius: 7px;
+    object-fit: cover;
+    position: center;
 }
 
 .keep-name {
@@ -193,5 +195,21 @@ export default {
 
 .keep-name {
     font-family: 'Pinyon Script', cursive;
+}
+
+.mobile-view {
+    display: flex;
+}
+
+@media (max-width: 900px) {
+    .mobile-view {
+
+        display: block;
+
+    }
+
+    .mobile-description {
+        justify-content: center;
+    }
 }
 </style>

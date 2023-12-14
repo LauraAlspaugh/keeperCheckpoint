@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-sm navbar-dark nav-color px-3 ">
     <router-link class="navbar-brand d-flex " :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center ">
+      <div class="d-flex flex-column align-items-center">
         <i class="mdi mdi-arrow-down fs-1 photo-title "><span class="plan-title fs-1 p-0" title="back to homepage">Keepr
             Co.</span></i>
       </div>
@@ -93,7 +93,7 @@ a:hover {
 
 @media screen and (min-width: 768px) {
   nav {
-    height: 64px;
+    height: 94px;
   }
 }
 </style>
