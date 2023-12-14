@@ -95,5 +95,9 @@ a:hover {
   nav {
     height: 94px;
   }
+
+  button {
+    display: block;
+  }
 }
 </style>
