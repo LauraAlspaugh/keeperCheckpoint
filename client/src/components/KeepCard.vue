@@ -7,7 +7,7 @@
             :alt="keepProp.creator.name">
         <i v-if="keepProp.creator.id == account.id" class="mdi mdi-close top-right fs-3" title="delete this keep"
             role="button" @click="destroyKeep()"></i>
-        <!-- <i @click="destroyVaultKeep()" role="button" class="mdi mdi-delete fs-3 top-mid-right"></i> -->
+
     </div>
     <KeepModal />
 </template>
