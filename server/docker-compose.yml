@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: your-dockerhub-username/keepercheckpoint:latest
+    image: lauraalspaugh/keepercheckpoint:latest
     env_file:
       - keepercheckpoint-env
     ports:
