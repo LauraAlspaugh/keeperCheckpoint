@@ -55,7 +55,10 @@ public class VaultKeepsService
 
     internal string DestroyVaultKeep(int vaultKeepId, string userId)
     {
+        // Keep keep = _keepsService.GetKeepById(userId);
+        // keep.Kept--;
         VaultKeep vaultKeep = GetVaultKeepById(vaultKeepId);
+
         if (vaultKeep.CreatorId != userId)
         {
             throw new Exception("do not try it!");
