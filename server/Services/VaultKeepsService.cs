@@ -63,6 +63,9 @@ public class VaultKeepsService
         {
             throw new Exception("do not try it!");
         }
+        Keep keep = _keepsService.GetKeepById(vaultKeep.KeepId, userId);
+        keep.Kept--;
+        _keepsRepository.EditKeep(keep);
         _vaultKeepsRepository.DestroyVaultKeep(vaultKeepId);
         return "it really is gone!";
 
