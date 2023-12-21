@@ -73,6 +73,7 @@ export default {
 .keep-image {
     box-shadow: 0px 3px 10px gray;
     border-radius: 7px;
+    width: 100%;
 }
 
 .keep-name {
@@ -104,7 +105,8 @@ export default {
     top: 8px;
     right: 16px;
     background-color: white;
-    border-radius: 23px;
+    border-radius: 1rem;
+    line-height: 2rem;
 }
 
 .top-mid-right {
