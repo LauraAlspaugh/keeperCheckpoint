@@ -81,7 +81,8 @@ export default {
     top: 8px;
     right: 16px;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 1rem;
+    line-height: 2rem;
 }
 
 .bottom-mid-left {
