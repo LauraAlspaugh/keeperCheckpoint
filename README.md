@@ -1,0 +1,1 @@
+Keepr is a full stack application built out over the course of five days. We use .NET for the server side and Vue for the client side. Built in resemblance to Pinterest, users have teh ability to create 'keeps' and save them to their 'vaults' or boards. 
