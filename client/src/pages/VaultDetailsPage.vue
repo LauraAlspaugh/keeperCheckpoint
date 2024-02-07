@@ -79,7 +79,7 @@ export default {
 <style lang="scss" scoped>
 .vault-image {
     width: 100%;
-    height: 400px;
+    height: 300px;
     object-fit: cover;
     position: center;
     border-radius: 7px;
@@ -95,8 +95,8 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+    text-shadow: 2px 2px 4px #000000;
     font-size: 70px;
-    backdrop-filter: blur(15px);
     border-radius: 7px;
     font-family: 'Pinyon Script', cursive;
 }
@@ -107,8 +107,8 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 40px;
-    backdrop-filter: blur(10px);
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 30px;
     border-radius: 7px;
     font-family: 'Pinyon Script', cursive;
 }
