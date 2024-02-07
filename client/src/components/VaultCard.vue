@@ -64,7 +64,7 @@ export default {
     position: absolute;
     bottom: 4px;
     left: 16px;
-    backdrop-filter: blur(15px);
+    text-shadow: 2px 2px 4px #000000;
     border-radius: 5px;
 }
 

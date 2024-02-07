@@ -82,7 +82,7 @@ WHERE val.id = @Id;
        acc.*
        FROM vaults val
        JOIN accounts acc ON acc.id = val.creatorId
-       WHERE val.creatorId = @userid;
+       WHERE val.creatorId = @userId;
        ";
 
         List<Vault> vaults = _db.Query<Vault, Account, Vault>(sql, (vault, account) =>

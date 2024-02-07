@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <section v-if="profile" class="row d-flex justify-content-center">
-            <div v-if="profile" class="col-8 p-4">
+            <div v-if="profile" class="col-8 p-4 position-relative">
                 <img class="img-fluid profile-image" :src="profile.coverImg" alt="">
+                <img class="img-fluid rounded-circle profile-img" :src="profile.picture" alt="">
             </div>
             <div class="col-12 text-center">
-                <img class="img-fluid rounded-circle profile-img" :src="profile.picture" alt="">
                 <p class=" fs-1 mt-5 text-center profile-name ">{{ profile.name }}</p>
-                <p class="fs-3 ">
-                    {{ vaults.length }} Vaults || {{ keeps.length }} Keeps
+                <p class="fs-3 keep-title">
+                    {{ vaults.length }} Vaults | {{ keeps.length }} Keeps
                 </p>
 
             </div>
@@ -21,13 +21,13 @@
                 <VaultCard :vaultProp="vault" />
             </div>
         </section>
-        <section class="row">
+        <section class="row mb-3">
             <div>
                 <p class="fs-1 keep-title p-3">Keeps</p>
             </div>
             <div class="masonry">
 
-                <div v-for="keep in keeps" :key="keep.id" class="col-12 p-3 w-100 mb-2 div-height ">
+                <div v-for="keep in keeps" :key="keep.id" class="col-12 p-1 w-100 mb-2 div-height ">
                     <KeepCard :keepProp="keep" />
                 </div>
             </div>
@@ -117,6 +117,9 @@ export default {
     width: 100px;
     height: 100px;
     border: 2px solid gray;
+    position: absolute;
+    bottom: -3rem;
+    left: 45%;
 }
 
 .keep-title {
@@ -128,6 +131,6 @@ export default {
 }
 
 .masonry {
-    columns: 400px;
+    columns: 300px;
 }
 </style>

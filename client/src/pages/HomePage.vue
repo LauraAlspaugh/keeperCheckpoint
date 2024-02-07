@@ -1,9 +1,9 @@
 <template>
-  <div class="container-fluid">
-    <section class="row">
+  <div class="container">
+    <section class="row mt-3 mb-3">
 
       <div class="masonry">
-        <div v-for="keep in keeps" :key="keep.id" class=" col-12 p-3 w-100 mb-2 div-height">
+        <div v-for="keep in keeps" :key="keep.id" class=" col-12 p-1  w-100 mb-2 div-height">
           <KeepCard :keepProp="keep" />
         </div>
       </div>
@@ -45,5 +45,6 @@ export default {
 <style scoped lang="scss">
 .masonry {
   columns: 300px;
+  column-gap: 1rem;
 }
 </style>
