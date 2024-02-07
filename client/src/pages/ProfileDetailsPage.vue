@@ -27,7 +27,7 @@
             </div>
             <div class="masonry">
 
-                <div v-for="keep in keeps" :key="keep.id" class="col-12 p-3 w-100 mb-2 div-height ">
+                <div v-for="keep in keeps" :key="keep.id" class="col-12 p-1 w-100 mb-2 div-height ">
                     <KeepCard :keepProp="keep" />
                 </div>
             </div>

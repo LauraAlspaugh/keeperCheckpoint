@@ -32,12 +32,13 @@ export default {
 }
 
 
+
 footer {
   display: grid;
   place-content: center;
   height: 32px;
-  background-color: #E9D8D6;
-  ;
+  background: #FEF6F0;
+  box-shadow: 0px 3px 10px gray;
 }
 
 .text-color {

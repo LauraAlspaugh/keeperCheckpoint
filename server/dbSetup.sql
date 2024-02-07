@@ -1,3 +1,5 @@
+-- Active: 1702936188373@@34.214.18.131@3306@Keepr
+
 CREATE TABLE
     IF NOT EXISTS accounts(
         id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
@@ -7,7 +9,7 @@ CREATE TABLE
         email varchar(255) COMMENT 'User Email',
         picture varchar(255) COMMENT 'User Picture',
         bio varchar(255) COMMENT 'user bio',
-        coverImg VARCHAR(1000) NOT NULL
+        coverImg VARCHAR(1000)
     ) default charset utf8 COMMENT '';
 
 CREATE TABLE
